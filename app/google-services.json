@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "302516253811",
+    "project_id": "neveentaskmanager",
+    "storage_bucket": "neveentaskmanager.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:302516253811:android:c6dca6d4f32b3d5bc66606",
+        "android_client_info": {
+          "package_name": "afifi.neveen.neveentaskmanager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "302516253811-5lbhqnktq281n5b8pvgqh55mcj9g9kqv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChwUSA8dNSnbrexkcNybYcvOoCwqXArwY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "302516253811-5lbhqnktq281n5b8pvgqh55mcj9g9kqv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
