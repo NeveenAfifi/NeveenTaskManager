@@ -1,12 +1,17 @@
 package afifi.neveen.neveentaskmanager;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class SignUpActivity extends AppCompatActivity {
@@ -28,6 +33,7 @@ public class SignUpActivity extends AppCompatActivity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //lkdfjglkjdsagjlkadsgj
                 checkAndSave();
             }
         });
@@ -56,8 +62,28 @@ public class SignUpActivity extends AppCompatActivity {
 
         if(isok)
         {
+            //used for signing in, signing up and sign out
             FirebaseAuth auth = FirebaseAuth.getInstance();
-            auth.crea
+            auth.createUserWithEmailAndPassword(email,passw).
+                    addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        /**
+                         * event handler, when the mission is completed
+                         * @param task information about the event
+                         */
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            //chek if creating  account passed successfully
+                            if(task.isSuccessful())
+                            {
+                                Toast.makeText(SignUpActivity.this, "Creation Successfully", Toast.LENGTH_SHORT).show();
+                                //close current activity
+                                finish();
+                            }
+                            else
+                                Toast.makeText(SignUpActivity.this, "Creation Failed"+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
         }
 
     }
