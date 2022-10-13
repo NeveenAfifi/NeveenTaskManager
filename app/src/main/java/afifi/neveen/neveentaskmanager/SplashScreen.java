@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class SplashScreen extends AppCompatActivity {
 
     @Override
@@ -17,13 +19,28 @@ public class SplashScreen extends AppCompatActivity {
         Runnable r=new Runnable() {
             @Override
             public void run() {
-                //to open new activity          from current        to next
-                Intent i= new Intent(SplashScreen.this, SignInActivity.class);
-                startActivity(i);
-                //to close current activity
-                finish();
+                //فحص هل تم الدخول مسبقا؟
+                FirebaseAuth auth=FirebaseAuth.getInstance();
+                if(auth.getCurrentUser()==null)
+                {
+                    //to open new activity          from current        to next
+                    Intent i = new Intent(SplashScreen.this, SignInActivity.class);
+                    startActivity(i);
+                    //to close current activity
+                    finish();
+                }
+                else
+                {
+                    //to open new activity          from current        to next
+                    Intent i = new Intent(SplashScreen.this, MainActivity.class);
+                    startActivity(i);
+                    //to close current activity
+                    finish();
+                }
             }
         };
         h.postDelayed(r,3000);
+
+
     }
 }
