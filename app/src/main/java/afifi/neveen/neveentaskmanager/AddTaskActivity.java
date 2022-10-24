@@ -59,19 +59,23 @@ public class AddTaskActivity extends AppCompatActivity {
         m.setTitle(title);
         m.setSubject(subj);
         m.setImportant(imp);
-        //استخراج الرقم المميز للمستعمل
+        //استخراج الرقم المميز للمستعمل UID
+        //                                      مستخدم دخل مسبقا
         String owner = FirebaseAuth.getInstance().getCurrentUser().getUid();
         m.setOwner(owner);
-        //استخراج الرقم المميز للمهمة
+        //انتاج الرقم المميز للمهمةالتي سيتم اضافتها
         String key = FirebaseDatabase.getInstance().getReference().
                     child("mahamat").
+                      //اضافة قيمة جديدة
                 child(owner).push().getKey();
         m.setKey(key);
         //حفظ بالخادم
+        //   عنوان جذر شجرة المعطيات
         FirebaseDatabase.getInstance().getReference().
-                child("mahamat").
+                child("mahamat").//جذر جديد تحته يتم تخزين المهمات
                 child(owner).
-                child(key).setValue(m).addOnCompleteListener(new OnCompleteListener<Void>() {
+                child(key).
+                setValue(m).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful())
